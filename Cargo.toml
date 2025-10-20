@@ -1,8 +1,4 @@
 [package]
-
-name = "ps2"
-version = "0.0.1"
-authors = ["Weilin Xu <mzweilin@gmail.com>", "David Evans <evans@virginia.edu>"]
-
-[dependencies]
-getopts = "*"
+name = "gash"
+version = "0.1.0"
+edition = "2024"
