@@ -1,9 +1,9 @@
 use std::env;
 use std::io::{self, Write};
 use std::process::{Command, Stdio};
-use sysinfo::{
+ use sysinfo::{
 Components, Disks, Networks, System,
-};
+}; 
 
 struct Shell {
     prompt: String,
@@ -71,6 +71,7 @@ impl Shell {
         }
         if program == "systeminfo" {
             eprint!("sys call");
+            return Ok(());
         }
         // No need to check with `which`; Command searches PATH for us.
         let status = Command::new(program)
