@@ -70,7 +70,16 @@ impl Shell {
             return Ok(());
         }
         if program == "systeminfo" {
-            eprint!("sys call");
+            println!("sys call");
+            println!("System name:             {:?}", System::name());
+            println!("System kernel version:   {:?}", System::kernel_version());
+            println!("System OS version:       {:?}", System::os_version());
+            println!("System host name:        {:?}", System::host_name());
+            println!("=> disks:");
+            let disks = Disks::new_with_refreshed_list();
+            for disk in &disks {
+                println!("{disk:?}");
+            }
             return Ok(());
         }
         // No need to check with `which`; Command searches PATH for us.
