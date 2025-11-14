@@ -70,6 +70,8 @@ impl Shell {
             return Ok(());
         }
         if program == "systeminfo" {
+
+            let mut sys = System::new();
             println!("sys call");
             println!("System name:             {:?}", System::name());
             println!("System kernel version:   {:?}", System::kernel_version());
@@ -80,6 +82,7 @@ impl Shell {
             for disk in &disks {
                 println!("{disk:?}");
             }
+            
             return Ok(());
         }
         // No need to check with `which`; Command searches PATH for us.
