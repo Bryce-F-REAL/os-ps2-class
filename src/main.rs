@@ -1,4 +1,4 @@
-use std::env;
+use std::{env, vec};
 use std::io::{self, Write};
 use std::process::{Command, Stdio};
  use sysinfo::{
@@ -51,6 +51,8 @@ impl Shell {
     }
 
     fn run_cmd(&self, program: &str, argv: &[&str]) -> io::Result<()> {
+        // add vector call here to add program to vector 
+        //HIST.push(program);
         // Built-ins (example: cd)
         if program == "cd" {
             // cd with no args -> home, else first arg
@@ -71,7 +73,7 @@ impl Shell {
         }
         if program == "systeminfo" {
 
-            let mut sys = System::new();
+            
             println!("sys call");
             println!("System name:             {:?}", System::name());
             println!("System kernel version:   {:?}", System::kernel_version());
@@ -82,7 +84,13 @@ impl Shell {
             for disk in &disks {
                 println!("{disk:?}");
             }
+
+            return Ok(());
+        }
+        if program == "history" {
+
             
+
             return Ok(());
         }
         // No need to check with `which`; Command searches PATH for us.
@@ -127,7 +135,7 @@ fn parse_dash_c() -> Option<String> {
     }
     None
 }
-
+//static HIST: &[&str] = &[""];
 fn main() -> io::Result<()> {
     if let Some(cmd_line) = parse_dash_c() {
         Shell::new("").run_cmdline(&cmd_line)
